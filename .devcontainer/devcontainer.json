@@ -1,0 +1,35 @@
+{
+  "build": {
+    "context": "..",
+    "dockerfile": "../Dockerfile",
+    "target": "development"
+  },
+  "postCreateCommand": "pdm install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "charliermarsh.ruff",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-azuretools.vscode-docker",
+        "ms-python.python",
+        "qwtel.sqlite-viewer",
+        "tamasfe.even-better-toml"
+      ],
+      "settings": {
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff"
+        },
+        "editor.codeActionsOnSave": {
+          "source.organizeImports": "explicit"
+        },
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "evenBetterToml.schema.enabled": false,
+        "workbench.editorAssociations": {
+          "*.db": "sqlite-viewer.option"
+        }
+      }
+    }
+  }
+}

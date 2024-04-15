@@ -1,0 +1,15 @@
+__pycache__
+.DS_Store
+.git
+*.db
+*.html
+*.ipynb
+/.pdm-python
+/.ruff_cache
+/.venv
+/.yarn
+/build
+/dist
+/Dockerfile
+/labextension
+/node_modules
