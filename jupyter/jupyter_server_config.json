@@ -15,6 +15,7 @@
     }
   },
   "KernelSpecManager": {
+    "allowed_kernelspecs": ["python"],
     "ensure_native_kernel": false
   }
 }
