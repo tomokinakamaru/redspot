@@ -4,7 +4,10 @@
     "dockerfile": "../Dockerfile",
     "target": "development"
   },
-  "postCreateCommand": "pdm install",
+  "postCreateCommand": "pdm install && sh kernel/install.sh",
+  "containerEnv": {
+    "JUPYTER_CONFIG_PATH": "${containerWorkspaceFolder}/jupyter"
+  },
   "customizations": {
     "vscode": {
       "extensions": [
@@ -14,7 +17,8 @@
         "ms-azuretools.vscode-docker",
         "ms-python.python",
         "qwtel.sqlite-viewer",
-        "tamasfe.even-better-toml"
+        "tamasfe.even-better-toml",
+        "timonwong.shellcheck"
       ],
       "settings": {
         "[python]": {

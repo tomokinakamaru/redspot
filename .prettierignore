@@ -1,2 +1,3 @@
+.venv
+pdm.lock
 /redspot-diffview/nbpreview
-/pdm.lock
