@@ -41,7 +41,7 @@ fix.composite = [
 "labextension" = "share/jupyter/labextensions/redspot"
 
 [[tool.hatch.build.hooks.build-scripts.scripts]]
-commands = ["python build.py > index.html"]
+commands = ["python3 build.py > index.html"]
 artifacts = ["/index.html"]
 work_dir = "redspot-diffview"
 out_dir = "redspot"
