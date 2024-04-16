@@ -1,7 +1,9 @@
 {
   "ServerApp": {
+    "ip": "*",
     "allow_root": true,
     "answer_yes": true,
+    "open_browser": false,
     "jpserver_extensions": {
       "jupyter_lsp": true,
       "jupyter_server_mathjax": true,
