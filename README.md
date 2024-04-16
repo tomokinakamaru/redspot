@@ -11,7 +11,13 @@ pdm install
 ### Install default kernel
 
 ```sh
-sh kernel/install.sh
+sh kernel-install.sh
+```
+
+### Upgrade default kernel
+
+```sh
+sh kernel-upgrade.sh
 ```
 
 ### Build frontend extension
