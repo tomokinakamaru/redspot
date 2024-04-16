@@ -8,6 +8,12 @@
 pdm install
 ```
 
+### Install default kernel
+
+```sh
+sh kernel/install.sh
+```
+
 ### Build frontend extension
 
 ```sh
