@@ -8,6 +8,6 @@ kernel/bin/pip install -r kernel-deps.txt
 kernel/bin/python -m ipykernel install \
     --user \
     --frozen_modules \
-    --name "python" \
-    --display-name "Python" \
+    --name=python-isolated \
+    --display-name=Python \
     --env PATH "$(pwd)/kernel/bin:$PATH"

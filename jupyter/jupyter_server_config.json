@@ -15,7 +15,7 @@
     }
   },
   "KernelSpecManager": {
-    "allowed_kernelspecs": ["python"],
+    "allowed_kernelspecs": ["python-isolated"],
     "ensure_native_kernel": false
   }
 }
