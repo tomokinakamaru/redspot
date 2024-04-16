@@ -21,8 +21,8 @@ def _load_notebooks():
 def _load_panel_roots():
     panel_roots, session_roots = {}, {}
     for _, panel, kind, args in database.get():
-        if kind == "ISessionContext.sessionChanged":
-            session = args["val"]
+        session = args.get("val")
+        if kind == "ISessionContext.sessionChanged" and session:
             if panel in panel_roots:
                 if session in session_roots:
                     panel_roots[panel] = session_roots[session]
