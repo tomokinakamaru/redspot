@@ -9,16 +9,16 @@ from nbdime import diff
 from redspot import datafilter, dataloader
 
 
-def main(diff, out):
-    if diff:
-        _main_diff(out)
+def main(snapshot, out):
+    if snapshot:
+        _main_snapshot(out)
     else:
-        _main(out)
+        _main_diff(out)
 
 
-def _main(out):
+def _main_snapshot(out):
     counters = defaultdict(count)
-    for panel, data in _load():
+    for panel, data in _load_snapshot():
         path = out / panel
         name = f"{next(counters[panel])}.ipynb"
         path.mkdir(parents=True, exist_ok=True)
@@ -43,7 +43,7 @@ def _main_diff(out):
             f.write(tail)
 
 
-def _load():
+def _load_snapshot():
     stream = dataloader.load()
     stream = datafilter.filter(stream)
     yield from stream
@@ -52,6 +52,6 @@ def _load():
 def _load_diff():
     empty = {"cells": [], "metadata": {}}
     notebooks = defaultdict(lambda: deepcopy(empty))
-    for panel, notebook in _load():
+    for panel, notebook in _load_snapshot():
         yield panel, diff(notebooks[panel], notebook)
         notebooks[panel] = deepcopy(notebook)

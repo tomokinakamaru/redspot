@@ -17,9 +17,9 @@ parser = command.add(
 )
 
 parser.add_argument(
-    "-d",
-    "--diff",
-    help="generate diff view",
+    "-s",
+    "--snapshot",
+    help="generate snapshots",
     action="store_true",
 )
 
