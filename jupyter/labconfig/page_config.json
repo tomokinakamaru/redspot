@@ -1,0 +1,19 @@
+{
+  "lockedExtensions": {
+    "redspot": true
+  },
+  "disabledExtensions": {
+    "@jupyter-notebook/console-extension": true,
+    "@jupyter-notebook/lab-extension": true,
+    "@jupyterlab/cell-toolbar-extension": true,
+    "@jupyterlab/console-extension": true,
+    "@jupyterlab/csvviewer-extension": true,
+    "@jupyterlab/debugger-extension": true,
+    "@jupyterlab/extensionmanager-extension": true,
+    "@jupyterlab/fileeditor-extension": true,
+    "@jupyterlab/metadataform-extension": true,
+    "@jupyterlab/notebook-extension:update-raw-mimetype": true,
+    "@jupyterlab/settingeditor-extension": true,
+    "nbdime-jupyterlab": true
+  }
+}

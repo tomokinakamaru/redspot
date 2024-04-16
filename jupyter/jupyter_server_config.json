@@ -1,0 +1,18 @@
+{
+  "ServerApp": {
+    "allow_root": true,
+    "answer_yes": true,
+    "jpserver_extensions": {
+      "jupyter_lsp": true,
+      "jupyter_server_mathjax": true,
+      "jupyter_server_terminals": false,
+      "jupyterlab": false,
+      "nbdime": false,
+      "notebook": true,
+      "notebook_shim": false
+    }
+  },
+  "KernelSpecManager": {
+    "ensure_native_kernel": false
+  }
+}
