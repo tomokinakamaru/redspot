@@ -1,13 +1,13 @@
-ARG PYTHON_VERSION=3.12.2
+ARG PYTHON_VERSION=3.12.4
 
 # -------------------------------------------------------------------------------------------------
 FROM python:${PYTHON_VERSION} as development
 
-ARG N_VERSION=9.2.1
+ARG N_VERSION=9.2.3
 
 ARG NODE_VERSION=21.7.3
 
-ARG PDM_VERSION=2.14.0
+ARG PDM_VERSION=2.15.4
 
 RUN export URL=https://raw.githubusercontent.com/tj/n/v${N_VERSION}/bin/n && \
     curl -L $URL | bash -s ${NODE_VERSION}
