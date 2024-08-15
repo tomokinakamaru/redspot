@@ -5,9 +5,9 @@ FROM python:${PYTHON_VERSION} as development
 
 ARG N_VERSION=9.2.3
 
-ARG NODE_VERSION=21.7.3
+ARG NODE_VERSION=22.6.0
 
-ARG PDM_VERSION=2.15.4
+ARG PDM_VERSION=2.18.0
 
 RUN export URL=https://raw.githubusercontent.com/tj/n/v${N_VERSION}/bin/n && \
     curl -L $URL | bash -s ${NODE_VERSION}

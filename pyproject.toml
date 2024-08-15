@@ -20,7 +20,7 @@ build-backend = "hatchling.build"
 distribution = true
 
 [tool.pdm.dev-dependencies]
-dev = ["ruff>=0.4.9", "setuptools>=70.1.0"]
+dev = ["ruff>=0.5.7", "setuptools>=72.2.0"]
 
 [tool.pdm.scripts]
 check.composite = [
