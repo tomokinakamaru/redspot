@@ -1,7 +1,6 @@
 **/__pycache__
 **/.DS_Store
 **/*.db
-**/*.html
 **/*.ipynb
 /.git
 /.pdm-python
