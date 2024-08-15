@@ -34,13 +34,6 @@
 
 6. Do anything you want on Jupyter.
 
-7. Replay your activity:
-
-   ```sh
-   # Replay HTML files are generated in the workspace
-   docker run --rm -v$(pwd):/workdir -it ghcr.io/tomokinakamaru/redspot:latest replay
-   ```
-
 ## Development
 
 ### Build and install package

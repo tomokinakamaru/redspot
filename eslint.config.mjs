@@ -15,7 +15,7 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: [".venv", "build", "labextension", "redspot-diffview", "*.mjs"]
+    ignores: [".venv", "build", "labextension", "*.mjs"]
   },
   ...compat.extends(
     "eslint:recommended",
