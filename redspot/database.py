@@ -1,5 +1,4 @@
 from functools import cache
-from json import loads
 from os import environ
 from sqlite3 import connect
 
@@ -7,12 +6,6 @@ from sqlite3 import connect
 def put(time, panel, kind, args):
     data = time, panel, kind, args
     _connect().execute(_put_query, data)
-
-
-def get():
-    cursor = _connect().execute(_get_query)
-    for time, panel, kind, args in cursor:
-        yield time, panel, kind, loads(args)
 
 
 @cache
@@ -39,8 +32,6 @@ time_index ON data (time)
 """
 
 _put_query = "INSERT INTO data VALUES (?, ?, ?, ?)"
-
-_get_query = "SELECT * FROM data ORDER BY time, rowid"
 
 _environ_key = "REDSPOT_DATABASE"
 
