@@ -1,7 +1,7 @@
 ARG PYTHON_VERSION=3.12.4
 
 # -------------------------------------------------------------------------------------------------
-FROM python:${PYTHON_VERSION} as development
+FROM python:${PYTHON_VERSION} AS development
 
 ARG N_VERSION=9.2.3
 
@@ -15,14 +15,14 @@ RUN export URL=https://raw.githubusercontent.com/tj/n/v${N_VERSION}/bin/n && \
 RUN pip install pdm==${PDM_VERSION}
 
 # -------------------------------------------------------------------------------------------------
-FROM development as build
+FROM development AS build
 
 COPY / /src
 
 RUN cd /src && pdm build --no-sdist
 
 # -------------------------------------------------------------------------------------------------
-FROM python:${PYTHON_VERSION}-slim as production
+FROM python:${PYTHON_VERSION}-slim AS production
 
 COPY /jupyter /jupyter
 
