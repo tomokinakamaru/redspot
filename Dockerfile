@@ -1,12 +1,16 @@
+# see https://www.python.org/doc/versions/
 ARG PYTHON_VERSION=3.12.4
 
 # -------------------------------------------------------------------------------------------------
 FROM python:${PYTHON_VERSION} AS development
 
+# see https://github.com/tj/n/tags
 ARG N_VERSION=9.2.3
 
+# see https://nodejs.org/en/about/previous-releases
 ARG NODE_VERSION=22.6.0
 
+# see https://github.com/pdm-project/pdm/releases
 ARG PDM_VERSION=2.18.0
 
 RUN export URL=https://raw.githubusercontent.com/tj/n/v${N_VERSION}/bin/n && \

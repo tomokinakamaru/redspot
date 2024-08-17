@@ -82,6 +82,7 @@ pdm update --unconstrained
 ### Upgrade jlpm-managed dependencies
 
 ```sh
-jlpm plugin import interactive-tools  # Remove the `plugins` section in `.yarnrc.yml`
+jlpm plugin import @yarnpkg/plugin-interactive-tools
 jlpm upgrade-interactive
+jlpm plugin remove @yarnpkg/plugin-interactive-tools
 ```
