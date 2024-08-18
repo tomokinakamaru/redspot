@@ -73,6 +73,12 @@ pdm run check  # Check
 pdm run fix # Fix
 ```
 
+### Run tests
+
+```sh
+pdm run test
+```
+
 ### Upgrade pdm-managed dependencies
 
 ```sh

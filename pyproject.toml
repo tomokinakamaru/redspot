@@ -32,6 +32,11 @@ fix.composite = [
   "jlpm run prettier --write .",
   "ruff format ."
 ]
+test.composite = [
+  "jlpm playwright install-deps",
+  "jlpm playwright install",
+  "jlpm playwright test"
+]
 
 [tool.hatch.build.targets.wheel.shared-data]
 "labextension" = "share/jupyter/labextensions/redspot"
