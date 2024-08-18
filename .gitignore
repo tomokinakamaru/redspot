@@ -14,3 +14,4 @@ __pycache__
 /kernel
 /labextension
 /node_modules
+/test-results

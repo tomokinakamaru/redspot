@@ -1,7 +1,4 @@
 {
-  "extends": "@tsconfig/recommended/tsconfig.json",
-  "include": ["redspot-frontend/*"],
-  "compilerOptions": {
-    "outDir": "build"
-  }
+  "exclude": ["test/*"],
+  "extends": "./tsconfig.eslint.json"
 }

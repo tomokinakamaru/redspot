@@ -32,11 +32,12 @@ export default [
       ecmaVersion: 5,
       sourceType: "module",
       parserOptions: {
-        project: "tsconfig.json"
+        project: "tsconfig.eslint.json"
       }
     },
     rules: {
-      "@typescript-eslint/no-explicit-any": "off"
+      "@typescript-eslint/no-explicit-any": "off",
+      "no-empty-pattern": "off"
     }
   }
 ];
