@@ -30,7 +30,7 @@ test("type-and-run", async ({ page }) => {
   await notebook.keyboard.press("Shift+Enter");
 
   // close
-  await sleep(1000);
+  await sleep(3000);
   await notebook.close();
   await page.close();
 
