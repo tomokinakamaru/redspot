@@ -22,15 +22,14 @@ function sleep(ms: number) {
 }
 
 function read(path: string) {
-  return new Promise<Record[]>((resolve, reject) => {
-    new Database(path).all("SELECT panel, kind, args FROM data", (err, rows) =>
-      err ? reject(err) : resolve(rows as Record[])
+  return new Promise<Row[]>((resolve, reject) => {
+    new Database(path).all("SELECT kind, args FROM data", (err, rows) =>
+      err ? reject(err) : resolve(rows as Row[])
     );
   });
 }
 
-type Record = {
-  panel: string;
+type Row = {
   kind: string;
   args: string;
 };
@@ -65,9 +64,41 @@ test("test", async ({ page }) => {
   // assertions
   const rows1 = await read(output);
   const rows2 = await read(expected);
-  expect(rows1.length).toBe(rows2.length);
-  for (let i = 0; i < rows1.length; i++) {
-    expect(rows1[i].kind).toBe(rows2[i].kind);
-    expect(rows1[i].args.length).toBe(rows2[i].args.length);
-  }
+  assert(rows1, rows2);
 });
+
+function assert(rows1: Row[], rows2: Row[]) {
+  const [items1, items2] = [rows1, rows2].map((rows) => {
+    return rows.map((row) => {
+      const args = removeIdentifiers(JSON.parse(row.args));
+      return `${row.kind}${JSON.stringify(args)}`;
+    });
+  });
+  items1.sort();
+  items2.sort();
+  expect(items1).toEqual(items2);
+}
+
+function removeIdentifiers(obj: any) {
+  if (typeof obj === "number") {
+    return obj;
+  }
+  if (typeof obj === "string") {
+    if (identifier.test(obj)) {
+      return "<identifier>";
+    }
+    return obj;
+  }
+  if (typeof obj === "object") {
+    const ret = {};
+    for (const k in obj) {
+      ret[k] = removeIdentifiers(obj[k]);
+    }
+    return ret;
+  }
+  if (Array.isArray(obj)) {
+    return obj.map(removeIdentifiers);
+  }
+}
+
+const identifier = /^.{8}-.{4}-.{4}-.{4}-.{12}$/;
