@@ -3,12 +3,16 @@ __pycache__
 *.db
 *.html
 *.ipynb
+/.coverage
+/.pytest_cache
 /.pdm-python
 /.ruff_cache
 /.venv
 /.yarn
 /build
+/coverage.xml
 /dist
+/htmlcov
 /jupyter/lab
 /jupyter/migrated
 /kernel

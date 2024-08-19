@@ -2,7 +2,7 @@
 name = "redspot"
 requires-python = ">=3.10"
 dynamic = ["version"]
-dependencies = ["notebook>=7.2.1"]
+dependencies = ["notebook>=7.2.1", "nbdime>=4.0.1"]
 
 [project.scripts]
 redspot = "redspot.__main__:main"
@@ -19,7 +19,12 @@ build-backend = "hatchling.build"
 distribution = true
 
 [tool.pdm.dev-dependencies]
-dev = ["ruff>=0.5.7", "setuptools>=72.2.0"]
+dev = [
+  "ruff>=0.5.7",
+  "setuptools>=72.2.0",
+  "pytest-cov>=5.0.0",
+  "pytest>=8.3.2"
+]
 
 [tool.pdm.scripts]
 check.composite = [
@@ -34,8 +39,10 @@ fix.composite = [
 ]
 test.composite = [
   "jlpm playwright install --with-deps chromium",
-  "jlpm playwright test"
+  "jlpm playwright test",
+  "pytest"
 ]
+coverage.cmd = "pytest --cov --cov-report=html --cov-report=term --cov-report=xml"
 
 [tool.hatch.build.targets.wheel.shared-data]
 "labextension" = "share/jupyter/labextensions/redspot"
@@ -57,3 +64,10 @@ source_dir = "redspot-frontend"
 
 [tool.hatch.version]
 source = "nodejs"
+
+[tool.pytest.ini_options]
+addopts = "-vv"
+filterwarnings = "error"
+
+[tool.coverage.run]
+branch = true
