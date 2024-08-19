@@ -33,8 +33,7 @@ fix.composite = [
   "ruff format ."
 ]
 test.composite = [
-  "jlpm playwright install-deps",
-  "jlpm playwright install",
+  "jlpm playwright install --with-deps chromium",
   "jlpm playwright test"
 ]
 
