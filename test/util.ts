@@ -12,10 +12,6 @@ export const test = galata.test.extend({
   }
 });
 
-export function sleep(ms: number) {
-  return new Promise<void>((r) => setTimeout(r, ms));
-}
-
 export function unlink(path: string) {
   if (fs.existsSync(path)) fs.unlinkSync(path);
 }
