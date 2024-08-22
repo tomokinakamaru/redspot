@@ -21,4 +21,4 @@
 /labextension
 /node_modules
 !/tests/x.db
-!/tests/x/**/*.ipynb
+!/tests/x/*.ipynb
