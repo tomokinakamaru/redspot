@@ -1,9 +1,9 @@
 import { expect } from "@jupyterlab/galata";
 import { read, test, unlink } from "./util";
 
-const actual = "test/redspot.db";
+const actual = process.env.REDSPOT_DATABASE!;
 
-const expected = "test/expected.sqlite3";
+const expected = "tests/x.sqlite3";
 
 test("type-and-run", async ({ page }) => {
   const timeout = { timeout: 10 * 1000 };
