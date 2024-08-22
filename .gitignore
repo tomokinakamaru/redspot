@@ -21,4 +21,4 @@ __pycache__
 /node_modules
 /test-results
 !/tests/x.db
-!/tests/x/**/*.ipynb
+!/tests/x/*.ipynb
