@@ -68,6 +68,7 @@ source = "nodejs"
 [tool.pytest.ini_options]
 addopts = "-vv"
 filterwarnings = "error"
+python_files = "test*.py"
 
 [tool.coverage.run]
 branch = true
