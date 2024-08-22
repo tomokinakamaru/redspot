@@ -7,6 +7,7 @@
 /.pytest_cache
 /.pdm-python
 /.ruff_cache
+/.tests
 /.venv
 /.yarn
 /build
@@ -19,3 +20,5 @@
 /kernel
 /labextension
 /node_modules
+!/tests/x.db
+!/tests/x/**/*.ipynb
