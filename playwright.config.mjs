@@ -1,5 +1,7 @@
 import { defineConfig } from "@playwright/test";
 
+process.env.REDSPOT_DATABASE = ".redspot.db";
+
 export default defineConfig({
   use: {
     appPath: ""
@@ -10,8 +12,7 @@ export default defineConfig({
       stdout: "pipe",
       stderr: "pipe",
       env: {
-        JUPYTER_CONFIG_PATH: "jupyter",
-        REDSPOT_DATABASE: "test/redspot.db"
+        JUPYTER_CONFIG_PATH: "jupyter"
       }
     }
   ]
