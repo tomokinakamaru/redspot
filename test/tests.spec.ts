@@ -3,7 +3,7 @@ import { read, test, unlink } from "./util";
 
 const actual = process.env.REDSPOT_DATABASE!;
 
-const expected = "test/expected.sqlite3";
+const expected = "test/x.sqlite3";
 
 test("type-and-run", async ({ page }) => {
   const timeout = { timeout: 10 * 1000 };
