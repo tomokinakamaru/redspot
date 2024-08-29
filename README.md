@@ -29,12 +29,6 @@
    docker run --rm -it -v$(pwd):/workdir ghcr.io/tomokinakamaru/redspot:latest replay
    ```
 
-## Data schema
-
-### SQLite table
-
-### JSON data
-
 ## Development
 
 1. Install Docker
