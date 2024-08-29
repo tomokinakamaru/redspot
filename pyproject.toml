@@ -27,22 +27,21 @@ dev = [
 ]
 
 [tool.pdm.scripts]
-check.composite = [
+lint.composite = [
+  "ruff check .",
   "jlpm run eslint .",
-  "jlpm run prettier --check .",
-  "ruff check ."
+  "jlpm run prettier --check ."
 ]
 fix.composite = [
+  "ruff format .",
   "jlpm run eslint --fix .",
-  "jlpm run prettier --write .",
-  "ruff format ."
+  "jlpm run prettier --write ."
 ]
 test.composite = [
-  "jlpm playwright install --with-deps chromium",
-  "jlpm playwright test",
-  "pytest"
+  "pytest --cov --cov-report=html --cov-report=term --cov-report=xml",
+  "jlpm playwright test"
 ]
-coverage.cmd = "pytest --cov --cov-report=html --cov-report=term --cov-report=xml"
+post_install.composite = ["jupyter labextension develop --overwrite ."]
 
 [tool.hatch.build.targets.wheel.shared-data]
 "labextension" = "share/jupyter/labextensions/redspot"
