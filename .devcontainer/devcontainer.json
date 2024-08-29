@@ -4,7 +4,6 @@
     "dockerfile": "../Dockerfile",
     "target": "development"
   },
-  "postCreateCommand": "pdm install && sh kernel-install.sh",
   "containerEnv": {
     "JUPYTER_CONFIG_PATH": "${containerWorkspaceFolder}/jupyter"
   },
