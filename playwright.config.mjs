@@ -8,7 +8,7 @@ export default defineConfig({
   },
   webServer: [
     {
-      command: "redspot --playwright",
+      command: "redspot record --playwright",
       stdout: "pipe",
       stderr: "pipe",
       env: {

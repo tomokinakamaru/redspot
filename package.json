@@ -11,20 +11,20 @@
     "build:prod": "rimraf build && tsc && jupyter labextension build ."
   },
   "dependencies": {
-    "@jupyterlab/application": "^4.2.4",
-    "@jupyterlab/notebook": "^4.2.4"
+    "@jupyterlab/application": "^4.2.5",
+    "@jupyterlab/notebook": "^4.2.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.1.0",
-    "@eslint/js": "^9.9.0",
-    "@jupyterlab/builder": "^4.2.4",
-    "@jupyterlab/galata": "^5.2.4",
+    "@eslint/js": "^9.9.1",
+    "@jupyterlab/builder": "^4.2.5",
+    "@jupyterlab/galata": "^5.2.5",
     "@playwright/test": "^1.46.1",
     "@tsconfig/recommended": "^1.0.7",
-    "@types/eslint": "^9.6.0",
-    "@typescript-eslint/eslint-plugin": "^8.1.0",
-    "@typescript-eslint/parser": "^8.1.0",
-    "eslint": "^9.9.0",
+    "@types/eslint": "^9.6.1",
+    "@typescript-eslint/eslint-plugin": "^8.3.0",
+    "@typescript-eslint/parser": "^8.3.0",
+    "eslint": "^9.9.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "prettier": "^3.3.3",

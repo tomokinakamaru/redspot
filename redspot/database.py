@@ -9,7 +9,8 @@ def put(time, panel, kind, args):
     _connect().execute(_put_query, data)
 
 
-def get(path):
+def get(path=None):
+    path = path or environ.get(_environ_key, _default_path)
     connection = connect(path, isolation_level=None)
     cursor = connection.execute(_get_query)
     for time, panel, kind, args in cursor:

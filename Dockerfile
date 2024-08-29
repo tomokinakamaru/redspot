@@ -1,5 +1,5 @@
 # see https://www.python.org/doc/versions/
-ARG PYTHON_VERSION=3.12.4
+ARG PYTHON_VERSION=3.12.5
 
 # -------------------------------------------------------------------------------------------------
 FROM python:${PYTHON_VERSION} AS development
@@ -8,15 +8,16 @@ FROM python:${PYTHON_VERSION} AS development
 ARG N_VERSION=9.2.3
 
 # see https://nodejs.org/en/about/previous-releases
-ARG NODE_VERSION=22.6.0
+ARG NODE_VERSION=22.7.0
 
 # see https://github.com/pdm-project/pdm/releases
-ARG PDM_VERSION=2.18.0
+ARG PDM_VERSION=2.18.1
 
 RUN export URL=https://raw.githubusercontent.com/tj/n/v${N_VERSION}/bin/n && \
     curl -L $URL | bash -s ${NODE_VERSION}
 
-RUN pip install pdm==${PDM_VERSION}
+RUN pip install pdm==${PDM_VERSION} && \
+    pdm config check_update false
 
 # -------------------------------------------------------------------------------------------------
 FROM development AS build
@@ -44,3 +45,5 @@ RUN export PYTHONDONTWRITEBYTECODE=1 && \
 WORKDIR "/workdir"
 
 ENTRYPOINT [ "redspot" ]
+
+CMD [ "record" ]

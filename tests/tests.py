@@ -22,7 +22,7 @@ def test_load_cli():
 
     # run command
     rmtree(actual, ignore_errors=True)
-    run([executable, "-m", "redspot.load", database, "-o", actual])
+    run([executable, "-m", "redspot", "replay", database, "-o", actual])
 
     # assertions
     actual = _read(actual)
