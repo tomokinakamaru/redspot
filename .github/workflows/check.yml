@@ -29,6 +29,10 @@ jobs:
 
       - run: pip install pdm
 
-      - run: pdm install && sh kernel-install.sh
+      - run: pdm sync && sh kernel-install.sh
 
-      - run: pdm run check && pdm run test
+      - run: pdm run jlpm playwright install --with-deps chromium
+
+      - run: pdm run lint
+
+      - run: pdm run test
