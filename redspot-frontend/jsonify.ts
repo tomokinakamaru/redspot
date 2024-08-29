@@ -13,7 +13,6 @@ import {
   isStream
 } from "@jupyterlab/nbformat";
 import { Session } from "@jupyterlab/services";
-import { NbformatChange, ValueChange } from "./types";
 
 export function jsonifyNbformatChange(change: NbformatChange) {
   return { key: change.key, val: change.newValue };
@@ -106,11 +105,22 @@ function mapMap<K, V>(m: Map<K, V>, f: (e: [K, V]) => any) {
   return Array.from(m.entries()).map(f);
 }
 
+type NbformatChange = {
+  key: string;
+  oldValue?: number;
+  newValue?: number;
+};
+
 type SessionChange = IChangedArgs<
   Session.ISessionConnection | null,
   Session.ISessionConnection | null,
   "session"
 >;
+
+type ValueChange<T> = {
+  oldValue?: T;
+  newValue?: T;
+};
 
 type MapChange = [
   string,
