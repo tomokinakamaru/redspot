@@ -16,7 +16,8 @@ ARG PDM_VERSION=2.18.0
 RUN export URL=https://raw.githubusercontent.com/tj/n/v${N_VERSION}/bin/n && \
     curl -L $URL | bash -s ${NODE_VERSION}
 
-RUN pip install pdm==${PDM_VERSION}
+RUN pip install pdm==${PDM_VERSION} && \
+    pdm config check_update false
 
 # -------------------------------------------------------------------------------------------------
 FROM development AS build
