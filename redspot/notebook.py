@@ -3,6 +3,8 @@ class Notebook(dict):
         super().__init__()
         self["cells"] = []
         self["metadata"] = {}
+        self["nbformat"] = 4
+        self["nbformat_minor"] = 0
 
     def apply(self, kind, args):
         head = kind.split(".", 1)[0]
