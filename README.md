@@ -26,7 +26,7 @@
 1. Replay your work
 
    ```sh
-   docker run --rm -it -v$(pwd):/workdir ghcr.io/tomokinakamaru/redspot:latest --replay
+   docker run --rm -it -v$(pwd):/workdir ghcr.io/tomokinakamaru/redspot:latest replay
    ```
 
 ## Data schema

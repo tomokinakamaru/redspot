@@ -45,3 +45,5 @@ RUN export PYTHONDONTWRITEBYTECODE=1 && \
 WORKDIR "/workdir"
 
 ENTRYPOINT [ "redspot" ]
+
+CMD [ "record" ]
