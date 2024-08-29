@@ -21,7 +21,7 @@
    ...
    ```
 
-1. Create a notebook and do anything you want on Jupyter Notebook
+1. Create a notebook and do anything you want
 
 1. Replay your work
 
