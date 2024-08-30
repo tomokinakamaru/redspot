@@ -50,11 +50,11 @@ function jsonifyMapChange(change: MapChange, current: any) {
   return { key: change[0], act: change[1].action, val: current[change[0]] };
 }
 
-function jsonifyArrayDelta<T>(delta: Delta<T[]>, f: (data: T) => any) {
+function jsonifyArrayDelta<T, S>(delta: Delta<T[]>, f: (data: T) => S) {
   return jsonifyDelta(delta, (a) => a.map(f));
 }
 
-function jsonifyDelta<T>(delta: Delta<T>, f: (data: T) => any) {
+function jsonifyDelta<T, S>(delta: Delta<T>, f: (data: T) => S) {
   return delta.map((d) => {
     if (d.insert) return { op: "insert", arg: f(d.insert) };
     if (d.delete) return { op: "delete", arg: d.delete };
@@ -101,7 +101,7 @@ function jsonifyError(err: IError) {
   return { ename: err.ename, evalue: err.evalue, traceback: err.traceback };
 }
 
-function mapMap<K, V>(m: Map<K, V>, f: (e: [K, V]) => any) {
+function mapMap<K, V, T>(m: Map<K, V>, f: (e: [K, V]) => T) {
   return Array.from(m.entries()).map(f);
 }
 
