@@ -76,12 +76,27 @@ function jsonifyCell(cell: ISharedCell) {
   };
 }
 
-function jsonifyOutput(o: IOutput) {
-  const t = o.output_type;
-  if (isExecuteResult(o)) return { output_type: t, ...jsonifyExecuteResult(o) };
-  if (isDisplayData(o)) return { output_type: t, ...jsonifyDisplayData(o) };
-  if (isStream(o)) return { output_type: t, ...jsonifyStream(o) };
-  if (isError(o)) return { output_type: t, ...jsonifyError(o) };
+function jsonifyOutput(output: IOutput) {
+  if (isExecuteResult(output))
+    return {
+      output_type: output.output_type,
+      ...jsonifyExecuteResult(output)
+    };
+  if (isDisplayData(output))
+    return {
+      output_type: output.output_type,
+      ...jsonifyDisplayData(output)
+    };
+  if (isStream(output))
+    return {
+      output_type: output.output_type,
+      ...jsonifyStream(output)
+    };
+  if (isError(output))
+    return {
+      output_type: output.output_type,
+      ...jsonifyError(output)
+    };
   throw Error();
 }
 
