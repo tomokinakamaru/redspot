@@ -29,6 +29,177 @@
    docker run --rm -it -v$(pwd):/workdir ghcr.io/tomokinakamaru/redspot:latest replay
    ```
 
+## Data schema
+
+### SQLite table
+
+### JSON shapes in TypeScript type notation
+
+See the external type definitions for the following types:
+
+- [IAttachments](https://github.com/jupyterlab/jupyterlab/blob/0d8446aa3504f166679e66b0abf8bce6154233dc/packages/nbformat/src/index.ts#L77)
+- [IBaseCellMetadata](https://github.com/jupyterlab/jupyterlab/blob/0d8446aa3504f166679e66b0abf8bce6154233dc/packages/nbformat/src/index.ts#L159)
+- [IMimeBundle](https://github.com/jupyterlab/jupyterlab/blob/0d8446aa3504f166679e66b0abf8bce6154233dc/packages/nbformat/src/index.ts#L70)
+- [PartialJSONObject](https://github.com/jupyterlab/lumino/blob/0fb17ae08476cb6c03c1dced1454391c8ea38355/packages/coreutils/src/json.ts#L68)
+- [Partial](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)
+
+<!-- prettier-ignore-start -->
+#### ISessionContext.sessionChanged
+
+```typescript
+{
+  val: string | undefined;
+}
+```
+
+#### INotebookModel.changed:cellsChange
+
+```typescript
+{
+  delta: ({
+    op: "insert";
+    arg: {
+      id: string;
+      source: string;
+      cell_type: string;
+      metadata: Partial<IBaseCellMetadata>;
+      execution_count: number | null | undefined;
+      outputs: ({
+        data: IMimeBundle;
+        metadata: PartialJSONObject;
+        output_type: "execute_result";
+      } | {
+        data: IMimeBundle;
+        metadata: PartialJSONObject;
+        output_type: "display_data";
+      } | {
+        name: "stdout" | "stderr";
+        text: string | string[];
+        output_type: "stream";
+      } | {
+        ename: string;
+        evalue: string;
+        traceback: string[];
+        output_type: "error";
+      })[] | undefined;
+    }[];
+  } | {
+    op: "delete";
+    arg: number;
+  } | {
+    op: "retain";
+    arg: number;
+  })[];
+}
+```
+
+#### INotebookModel.changed:nbformatChanged
+
+```typescript
+{
+  key: string;
+  val: number | undefined;
+}
+```
+
+#### INotebookModel.changed:metadataChange
+
+```typescript
+{
+  delta: {
+    key: string;
+    act: "delete" | "add" | "update";
+    val: any;
+  }[];
+}
+```
+
+#### ISharedCell.changed:attachmentsChange
+
+```typescript
+{
+  cell: string;
+  val: IAttachments | undefined;
+}
+```
+
+#### ISharedCell.changed:executionCountChange
+
+```typescript
+{
+  cell: string;
+  val: number | undefined;
+}
+```
+
+#### ISharedCell.changed:outputsChange
+
+```typescript
+{
+  cell: string;
+  delta: ({
+    op: "insert";
+    arg: ({
+      data: IMimeBundle;
+      metadata: PartialJSONObject;
+      output_type: "execute_result";
+    } | {
+      data: IMimeBundle;
+      metadata: PartialJSONObject;
+      output_type: "display_data";
+    } | {
+      name: "stdout" | "stderr";
+      text: string | string[];
+      output_type: "stream";
+    } | {
+      ename: string;
+      evalue: string;
+      traceback: string[];
+      output_type: "error";
+    })[];
+  } | {
+    op: "delete";
+    arg: number;
+  } | {
+    op: "retain";
+    arg: number;
+  })[];
+}
+```
+
+#### ISharedCell.changed:sourceChange
+
+```typescript
+{
+  cell: string;
+  delta: ({
+    op: "insert";
+    arg: string;
+  } | {
+    op: "delete";
+    arg: number;
+  } | {
+    op: "retain";
+    arg: number;
+  })[];
+}
+```
+
+#### ISharedCell.changed:metadataChange
+
+```typescript
+{
+  cell: string;
+  delta: {
+    key: string;
+    act: "delete" | "add" | "update";
+    val: any;
+  }[];
+}
+```
+
+<!-- prettier-ignore-end -->
+
 ## Development
 
 1. Install Docker
@@ -68,6 +239,13 @@ act --job check --matrix python-version:3.12
 
 ```sh
 pdm build --no-sdist
+```
+
+### Update schema documentation
+
+```sh
+# Paste command outputs to this README
+jlpm run ts-node schema-json.ts
 ```
 
 ### Upgrade dependencies
