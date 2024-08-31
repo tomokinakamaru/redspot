@@ -13,19 +13,18 @@ project
   .getTypeAliases()
   .filter((decl) => decl.getName().includes("_"))
   .map((decl) => {
-    const name = decl.getName().replace("__", ":").replace("_", ".");
-    return [name, decl.getType().getText(undefined, flags)];
-  })
-  .map((item) => {
-    const [key, val] = item;
-    const code = val
+    const name = decl.getName();
+    const head = name.replace("__", ":").replace("_", ".");
+    const type = decl
+      .getType()
+      .getText(undefined, flags)
       .replace(/( {4,})/g, "\n$1")
       .replace(/;}/g, ";\n}")
       .replace(/ {4}/g, "  ");
-    console.log(`#### ${key}`);
+    console.log(`#### ${head}`);
     console.log();
     console.log("```typescript");
-    console.log(code);
+    console.log(`type ${name} = ${type}`);
     console.log("```");
     console.log();
   });
