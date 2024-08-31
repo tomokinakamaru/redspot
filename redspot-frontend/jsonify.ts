@@ -50,15 +50,18 @@ function jsonifyMapChange(change: MapChange, current: any) {
   return { key: change[0], act: change[1].action, val: current[change[0]] };
 }
 
-function jsonifyArrayDelta<T>(delta: Delta<T[]>, f: (data: T) => any) {
+function jsonifyArrayDelta<T, S>(delta: Delta<T[]>, f: (data: T) => S) {
   return jsonifyDelta(delta, (a) => a.map(f));
 }
 
-function jsonifyDelta<T>(delta: Delta<T>, f: (data: T) => any) {
+function jsonifyDelta<T, S>(delta: Delta<T>, f: (data: T) => S) {
   return delta.map((d) => {
-    if (d.insert) return { op: "insert", arg: f(d.insert) };
-    if (d.delete) return { op: "delete", arg: d.delete };
-    if (d.retain) return { op: "retain", arg: d.retain };
+    if (d.insert)
+      return { op: "insert", arg: f(d.insert) } as { op: "insert"; arg: S };
+    if (d.delete)
+      return { op: "delete", arg: d.delete } as { op: "delete"; arg: number };
+    if (d.retain)
+      return { op: "retain", arg: d.retain } as { op: "retain"; arg: number };
     throw Error();
   });
 }
@@ -66,22 +69,38 @@ function jsonifyDelta<T>(delta: Delta<T>, f: (data: T) => any) {
 function jsonifyCell(cell: ISharedCell) {
   const n = "execution_count" in cell ? cell.execution_count : undefined;
   const o = "outputs" in cell ? cell.outputs.map(jsonifyOutput) : undefined;
+  const e: number | null | undefined = n;
   return {
     id: cell.id,
     source: cell.source,
     cell_type: cell.cell_type,
     metadata: cell.metadata,
-    execution_count: n,
+    execution_count: e,
     outputs: o
   };
 }
 
-function jsonifyOutput(o: IOutput) {
-  const t = o.output_type;
-  if (isExecuteResult(o)) return { output_type: t, ...jsonifyExecuteResult(o) };
-  if (isDisplayData(o)) return { output_type: t, ...jsonifyDisplayData(o) };
-  if (isStream(o)) return { output_type: t, ...jsonifyStream(o) };
-  if (isError(o)) return { output_type: t, ...jsonifyError(o) };
+function jsonifyOutput(output: IOutput) {
+  if (isExecuteResult(output))
+    return {
+      output_type: output.output_type,
+      ...jsonifyExecuteResult(output)
+    };
+  if (isDisplayData(output))
+    return {
+      output_type: output.output_type,
+      ...jsonifyDisplayData(output)
+    };
+  if (isStream(output))
+    return {
+      output_type: output.output_type,
+      ...jsonifyStream(output)
+    };
+  if (isError(output))
+    return {
+      output_type: output.output_type,
+      ...jsonifyError(output)
+    };
   throw Error();
 }
 
@@ -94,14 +113,16 @@ function jsonifyDisplayData(data: IDisplayData) {
 }
 
 function jsonifyStream(data: IStream) {
-  return { name: data.name, text: data.text };
+  const name: "stdout" | "stderr" = data.name;
+  const text: string | string[] = data.text;
+  return { name: name, text: text };
 }
 
 function jsonifyError(err: IError) {
   return { ename: err.ename, evalue: err.evalue, traceback: err.traceback };
 }
 
-function mapMap<K, V>(m: Map<K, V>, f: (e: [K, V]) => any) {
+function mapMap<K, V, T>(m: Map<K, V>, f: (e: [K, V]) => T) {
   return Array.from(m.entries()).map(f);
 }
 
