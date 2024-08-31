@@ -69,12 +69,13 @@ function jsonifyDelta<T, S>(delta: Delta<T>, f: (data: T) => S) {
 function jsonifyCell(cell: ISharedCell) {
   const n = "execution_count" in cell ? cell.execution_count : undefined;
   const o = "outputs" in cell ? cell.outputs.map(jsonifyOutput) : undefined;
+  const e: number | null | undefined = n;
   return {
     id: cell.id,
     source: cell.source,
     cell_type: cell.cell_type,
     metadata: cell.metadata,
-    execution_count: n,
+    execution_count: e,
     outputs: o
   };
 }
@@ -112,7 +113,9 @@ function jsonifyDisplayData(data: IDisplayData) {
 }
 
 function jsonifyStream(data: IStream) {
-  return { name: data.name, text: data.text };
+  const name: "stdout" | "stderr" = data.name;
+  const text: string | string[] = data.text;
+  return { name: name, text: text };
 }
 
 function jsonifyError(err: IError) {

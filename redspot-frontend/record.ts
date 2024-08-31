@@ -89,22 +89,26 @@ type INotebookModel_changed__metadataChange = ReturnType<
   typeof jsonifyMetadataChange
 >;
 
-type ISharedCell_changed__attachmentsChange = { cell: string } & ReturnType<
-  typeof jsonifyAttachmentsChange
+type ISharedCell_changed__attachmentsChange = Expand<
+  { cell: string } & ReturnType<typeof jsonifyAttachmentsChange>
 >;
 
-type ISharedCell_changed__executionCountChange = { cell: string } & ReturnType<
-  typeof jsonifyValueChange
+type ISharedCell_changed__executionCountChange = Expand<
+  { cell: string } & ReturnType<typeof jsonifyValueChange>
 >;
 
-type ISharedCell_changed__outputsChange = { cell: string } & ReturnType<
-  typeof jsonifyOutputsChange
+type ISharedCell_changed__outputsChange = Expand<
+  { cell: string } & ReturnType<typeof jsonifyOutputsChange>
 >;
 
-type ISharedCell_changed__sourceChange = { cell: string } & ReturnType<
-  typeof jsonifySourceChange
+type ISharedCell_changed__sourceChange = Expand<
+  { cell: string } & ReturnType<typeof jsonifySourceChange>
 >;
 
-type ISharedCell_changed__metadataChange = { cell: string } & ReturnType<
-  typeof jsonifyMetadataChange
+type ISharedCell_changed__metadataChange = Expand<
+  { cell: string } & ReturnType<typeof jsonifyMetadataChange>
 >;
+
+// REF: https://stackoverflow.com/questions/57683303/how-can-i-see-the-full-expanded-contract-of-a-typescript-type/57683652#57683652
+// For intersection type expansion
+type Expand<T> = T extends infer O ? { [K in keyof O]: O[K] } : never;
