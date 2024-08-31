@@ -33,6 +33,15 @@
 
 ### SQLite table
 
+<!-- prettier-ignore-start -->
+|Name|Type|Nullable|
+|:---|:---|:-------|
+|time|INTEGER|NO|
+|panel|TEXT|NO|
+|kind|TEXT|NO|
+|args|JSON|NO|
+<!-- prettier-ignore-end -->
+
 ### JSON shapes in TypeScript type notation
 
 See the external type definitions for the following types:
@@ -245,6 +254,7 @@ pdm build --no-sdist
 
 ```sh
 # Paste command outputs to this README
+python schema-table.py
 jlpm run ts-node schema-json.ts
 ```
 
