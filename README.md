@@ -56,7 +56,7 @@ See the external type definitions for the following types:
 #### ISessionContext.sessionChanged
 
 ```typescript
-{
+type ISessionContext_sessionChanged = {
   val: string | undefined;
 }
 ```
@@ -64,7 +64,7 @@ See the external type definitions for the following types:
 #### INotebookModel.changed:cellsChange
 
 ```typescript
-{
+type INotebookModel_changed__cellsChange = {
   delta: ({
     op: "insert";
     arg: {
@@ -105,7 +105,7 @@ See the external type definitions for the following types:
 #### INotebookModel.changed:nbformatChanged
 
 ```typescript
-{
+type INotebookModel_changed__nbformatChanged = {
   key: string;
   val: number | undefined;
 }
@@ -114,7 +114,7 @@ See the external type definitions for the following types:
 #### INotebookModel.changed:metadataChange
 
 ```typescript
-{
+type INotebookModel_changed__metadataChange = {
   delta: {
     key: string;
     act: "delete" | "add" | "update";
@@ -126,7 +126,7 @@ See the external type definitions for the following types:
 #### ISharedCell.changed:attachmentsChange
 
 ```typescript
-{
+type ISharedCell_changed__attachmentsChange = {
   cell: string;
   val: IAttachments | undefined;
 }
@@ -135,7 +135,7 @@ See the external type definitions for the following types:
 #### ISharedCell.changed:executionCountChange
 
 ```typescript
-{
+type ISharedCell_changed__executionCountChange = {
   cell: string;
   val: number | undefined;
 }
@@ -144,7 +144,7 @@ See the external type definitions for the following types:
 #### ISharedCell.changed:outputsChange
 
 ```typescript
-{
+type ISharedCell_changed__outputsChange = {
   cell: string;
   delta: ({
     op: "insert";
@@ -179,7 +179,7 @@ See the external type definitions for the following types:
 #### ISharedCell.changed:sourceChange
 
 ```typescript
-{
+type ISharedCell_changed__sourceChange = {
   cell: string;
   delta: ({
     op: "insert";
@@ -197,7 +197,7 @@ See the external type definitions for the following types:
 #### ISharedCell.changed:metadataChange
 
 ```typescript
-{
+type ISharedCell_changed__metadataChange = {
   cell: string;
   delta: {
     key: string;
