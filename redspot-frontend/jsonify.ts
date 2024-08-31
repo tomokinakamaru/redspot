@@ -56,9 +56,12 @@ function jsonifyArrayDelta<T, S>(delta: Delta<T[]>, f: (data: T) => S) {
 
 function jsonifyDelta<T, S>(delta: Delta<T>, f: (data: T) => S) {
   return delta.map((d) => {
-    if (d.insert) return { op: "insert", arg: f(d.insert) };
-    if (d.delete) return { op: "delete", arg: d.delete };
-    if (d.retain) return { op: "retain", arg: d.retain };
+    if (d.insert)
+      return { op: "insert", arg: f(d.insert) } as { op: "insert"; arg: S };
+    if (d.delete)
+      return { op: "delete", arg: d.delete } as { op: "delete"; arg: number };
+    if (d.retain)
+      return { op: "retain", arg: d.retain } as { op: "retain"; arg: number };
     throw Error();
   });
 }
