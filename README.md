@@ -46,11 +46,14 @@
 
 See the external type definitions for the following types:
 
-- [IAttachments](https://github.com/jupyterlab/jupyterlab/blob/0d8446aa3504f166679e66b0abf8bce6154233dc/packages/nbformat/src/index.ts#L77)
-- [IBaseCellMetadata](https://github.com/jupyterlab/jupyterlab/blob/0d8446aa3504f166679e66b0abf8bce6154233dc/packages/nbformat/src/index.ts#L159)
-- [IMimeBundle](https://github.com/jupyterlab/jupyterlab/blob/0d8446aa3504f166679e66b0abf8bce6154233dc/packages/nbformat/src/index.ts#L70)
-- [PartialJSONObject](https://github.com/jupyterlab/lumino/blob/0fb17ae08476cb6c03c1dced1454391c8ea38355/packages/coreutils/src/json.ts#L68)
-- [Partial](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)
+- [ExecutionCount](https://github.com/jupyterlab/jupyterlab/blob/v4.2.5/packages/nbformat/src/index.ts#L84)
+- [IAttachments](https://github.com/jupyterlab/jupyterlab/blob/v4.2.5/packages/nbformat/src/index.ts#L77)
+- [IBaseCellMetadata](https://github.com/jupyterlab/jupyterlab/blob/v4.2.5/packages/nbformat/src/index.ts#L159)
+- [IMimeBundle](https://github.com/jupyterlab/jupyterlab/blob/v4.2.5/packages/nbformat/src/index.ts#L70)
+- [MultilineString](https://github.com/jupyterlab/jupyterlab/blob/v4.2.5/packages/nbformat/src/index.ts#L65)
+- [Partial](https://github.com/microsoft/TypeScript/blob/v5.5.4/src/lib/es5.d.ts#L1560)
+- [PartialJSONObject](https://github.com/jupyterlab/lumino/blob/@lumino/coreutils@2.1.2/packages/coreutils/src/json.ts#L68)
+- [StreamType](https://github.com/jupyterlab/jupyterlab/blob/v4.2.5/packages/nbformat/src/index.ts#L478)
 
 <!-- prettier-ignore-start -->
 #### ISessionContext.sessionChanged
@@ -72,7 +75,7 @@ type INotebookModel_changed__cellsChange = {
       source: string;
       cell_type: string;
       metadata: Partial<IBaseCellMetadata>;
-      execution_count: number | null | undefined;
+      execution_count: ExecutionCount | undefined;
       outputs: ({
         data: IMimeBundle;
         metadata: PartialJSONObject;
@@ -82,8 +85,8 @@ type INotebookModel_changed__cellsChange = {
         metadata: PartialJSONObject;
         output_type: "display_data";
       } | {
-        name: "stdout" | "stderr";
-        text: string | string[];
+        name: StreamType;
+        text: MultilineString;
         output_type: "stream";
       } | {
         ename: string;
@@ -157,8 +160,8 @@ type ISharedCell_changed__outputsChange = {
       metadata: PartialJSONObject;
       output_type: "display_data";
     } | {
-      name: "stdout" | "stderr";
-      text: string | string[];
+      name: StreamType;
+      text: MultilineString;
       output_type: "stream";
     } | {
       ename: string;
