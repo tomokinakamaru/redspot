@@ -72,7 +72,7 @@ type INotebookModel_changed__cellsChange = {
       source: string;
       cell_type: string;
       metadata: Partial<IBaseCellMetadata>;
-      execution_count: number | null | undefined;
+      execution_count: ExecutionCount | undefined;
       outputs: ({
         data: IMimeBundle;
         metadata: PartialJSONObject;
@@ -82,8 +82,8 @@ type INotebookModel_changed__cellsChange = {
         metadata: PartialJSONObject;
         output_type: "display_data";
       } | {
-        name: "stdout" | "stderr";
-        text: string | string[];
+        name: StreamType;
+        text: MultilineString;
         output_type: "stream";
       } | {
         ename: string;
@@ -157,8 +157,8 @@ type ISharedCell_changed__outputsChange = {
       metadata: PartialJSONObject;
       output_type: "display_data";
     } | {
-      name: "stdout" | "stderr";
-      text: string | string[];
+      name: StreamType;
+      text: MultilineString;
       output_type: "stream";
     } | {
       ename: string;
