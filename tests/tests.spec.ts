@@ -74,7 +74,7 @@ function read(path: string) {
   type Row = { type: string; args: string };
 
   const database = new Database(path);
-  const query = "SELECT type, args FROM data";
+  const query = "SELECT type, args FROM signal";
 
   const identifier = /^.{8}-.{4}-.{4}-.{4}-.{12}$/;
   const version = /^\d+\.\d+\.\d+$/;

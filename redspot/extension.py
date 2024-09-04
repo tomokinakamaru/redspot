@@ -8,8 +8,8 @@ from redspot import database
 class Handler(APIHandler):
     @authenticated
     def post(self):
-        data = self.request.body.decode()
-        database.put(*data.split(maxsplit=3))
+        signal = self.request.body.decode()
+        database.put(*signal.split(maxsplit=3))
 
 
 def _load_jupyter_server_extension(app):

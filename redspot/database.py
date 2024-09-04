@@ -5,8 +5,8 @@ from sqlite3 import connect
 
 
 def put(time, panel, type, args):
-    data = time, panel, type, args
-    _connect().execute(_put_query, data)
+    signal = time, panel, type, args
+    _connect().execute(_put_query, signal)
 
 
 def get(path=None):
@@ -27,7 +27,7 @@ def _connect():
 
 
 _create_table_query = """
-CREATE TABLE IF NOT EXISTS data (
+CREATE TABLE IF NOT EXISTS signal (
     time INTEGER NOT NULL,
     panel TEXT NOT NULL,
     type TEXT NOT NULL,
@@ -37,12 +37,12 @@ CREATE TABLE IF NOT EXISTS data (
 
 _create_index_query = """
 CREATE INDEX IF NOT EXISTS
-time_index ON data (time)
+time_index ON signal (time)
 """
 
-_put_query = "INSERT INTO data VALUES (?, ?, ?, ?)"
+_put_query = "INSERT INTO signal VALUES (?, ?, ?, ?)"
 
-_get_query = "SELECT * FROM data ORDER BY time, rowid"
+_get_query = "SELECT * FROM signal ORDER BY time, rowid"
 
 _environ_key = "REDSPOT_DATABASE"
 
