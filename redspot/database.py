@@ -4,8 +4,8 @@ from os import environ
 from sqlite3 import connect
 
 
-def put(time, panel, kind, args):
-    data = time, panel, kind, args
+def put(time, panel, type, args):
+    data = time, panel, type, args
     _connect().execute(_put_query, data)
 
 
@@ -13,8 +13,8 @@ def get(path=None):
     path = path or environ.get(_environ_key, _default_path)
     connection = connect(path, isolation_level=None)
     cursor = connection.execute(_get_query)
-    for time, panel, kind, args in cursor:
-        yield time, panel, kind, loads(args)
+    for time, panel, type, args in cursor:
+        yield time, panel, type, loads(args)
 
 
 @cache
@@ -30,7 +30,7 @@ _create_table_query = """
 CREATE TABLE IF NOT EXISTS data (
     time INTEGER NOT NULL,
     panel TEXT NOT NULL,
-    kind TEXT NOT NULL,
+    type TEXT NOT NULL,
     args JSON NOT NULL
 )
 """
