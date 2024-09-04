@@ -2,7 +2,7 @@ from sqlite3 import connect
 
 connection = connect("tests/x.db")
 
-result = connection.execute("PRAGMA table_info('data')")
+result = connection.execute("PRAGMA table_info('signal')")
 
 print("<!-- prettier-ignore-start -->")
 print("|Name|Type|Nullable|")
