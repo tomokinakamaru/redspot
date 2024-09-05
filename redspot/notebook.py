@@ -6,16 +6,16 @@ class Notebook(dict):
         self["nbformat"] = 4
         self["nbformat_minor"] = 0
 
-    def apply(self, type, args):
-        head = type.split(".", 1)[0]
-        self._invoke(head, type, args)
+    def apply(self, kind, args):
+        head = kind.split(".", 1)[0]
+        self._invoke(head, kind, args)
 
-    def _INotebookModel(self, type, args):
-        self._invoke(type, args)
+    def _INotebookModel(self, kind, args):
+        self._invoke(kind, args)
 
-    def _ISharedCell(self, type, args):
+    def _ISharedCell(self, kind, args):
         cell = self._get_cell(args["cell"])
-        self._invoke(type, cell, args)
+        self._invoke(kind, cell, args)
 
     def _INotebookModel_changed_cellsChange(self, args):
         self["cells"] = _apply_delta(self["cells"], args)

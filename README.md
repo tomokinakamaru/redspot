@@ -38,7 +38,7 @@
 |:---|:---|:-------|
 |time|INTEGER|NO|
 |panel|TEXT|NO|
-|type|TEXT|NO|
+|kind|TEXT|NO|
 |args|JSON|NO|
 <!-- prettier-ignore-end -->
 

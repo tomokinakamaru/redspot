@@ -13,60 +13,60 @@ import {
 
 export function record(
   panel: string,
-  type: "ISessionContext.sessionChanged",
+  kind: "ISessionContext.sessionChanged",
   args: ISessionContext_sessionChanged
 ): void;
 
 export function record(
   panel: string,
-  type: "INotebookModel.changed:cellsChange",
+  kind: "INotebookModel.changed:cellsChange",
   args: INotebookModel_changed__cellsChange
 ): void;
 
 export function record(
   panel: string,
-  type: "INotebookModel.changed:nbformatChanged",
+  kind: "INotebookModel.changed:nbformatChanged",
   args: INotebookModel_changed__nbformatChanged
 ): void;
 
 export function record(
   panel: string,
-  type: "INotebookModel.changed:metadataChange",
+  kind: "INotebookModel.changed:metadataChange",
   args: INotebookModel_changed__metadataChange
 ): void;
 
 export function record(
   panel: string,
-  type: "ISharedCell.changed:attachmentsChange",
+  kind: "ISharedCell.changed:attachmentsChange",
   args: ISharedCell_changed__attachmentsChange
 ): void;
 
 export function record(
   panel: string,
-  type: "ISharedCell.changed:executionCountChange",
+  kind: "ISharedCell.changed:executionCountChange",
   args: ISharedCell_changed__executionCountChange
 ): void;
 
 export function record(
   panel: string,
-  type: "ISharedCell.changed:outputsChange",
+  kind: "ISharedCell.changed:outputsChange",
   args: ISharedCell_changed__outputsChange
 ): void;
 
 export function record(
   panel: string,
-  type: "ISharedCell.changed:sourceChange",
+  kind: "ISharedCell.changed:sourceChange",
   args: ISharedCell_changed__sourceChange
 ): void;
 
 export function record(
   panel: string,
-  type: "ISharedCell.changed:metadataChange",
+  kind: "ISharedCell.changed:metadataChange",
   args: ISharedCell_changed__metadataChange
 ): void;
 
-export function record(panel: string, type: string, args: any) {
-  const body = `${Date.now()} ${panel} ${type} ${JSON.stringify(args)}`;
+export function record(panel: string, kind: string, args: any) {
+  const body = `${Date.now()} ${panel} ${kind} ${JSON.stringify(args)}`;
   const init = { method: "POST", body: body };
   ServerConnection.makeRequest(endpoint, init, settings);
 }

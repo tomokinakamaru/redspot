@@ -26,14 +26,14 @@ def filter_by_diff(stream):
             yield panel, notebook
 
 
-def filter_by_type(stream):
+def filter_by_kind(stream):
     notebooks = {}
     cell_changed = _cell_change_detector()
-    for panel, type, args, notebook in stream:
+    for panel, kind, args, notebook in stream:
         notebooks[panel] = notebook
-        if type in _yield_immediately:
+        if kind in _yield_immediately:
             yield panel, notebooks.pop(panel)
-        elif type in _yield_if_cell_changed:
+        elif kind in _yield_if_cell_changed:
             if cell_changed(panel, args):
                 yield panel, notebooks.pop(panel)
     yield from notebooks.items()
