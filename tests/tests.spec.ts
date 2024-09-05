@@ -71,10 +71,10 @@ function unlink(path: string) {
 }
 
 function read(path: string) {
-  type Row = { type: string; args: string };
+  type Row = { kind: string; args: string };
 
   const database = new Database(path);
-  const query = "SELECT type, args FROM signal";
+  const query = "SELECT kind, args FROM signal";
 
   const identifier = /^.{8}-.{4}-.{4}-.{4}-.{12}$/;
   const version = /^\d+\.\d+\.\d+$/;
@@ -103,7 +103,7 @@ function read(path: string) {
     const args = JSON.parse(row.args);
     const noid = fixValues(args);
     const encd = JSON.stringify(noid);
-    return `${row.type}${encd}`;
+    return `${row.kind}${encd}`;
   };
 
   return new Promise<string[]>((resolve, reject) => {
