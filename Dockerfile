@@ -1,14 +1,14 @@
 # see https://www.python.org/doc/versions/
-ARG PYTHON_VERSION=3.12.5
+ARG PYTHON_VERSION=3.12.7
 
 # -------------------------------------------------------------------------------------------------
 FROM python:${PYTHON_VERSION} AS development
 
 # see https://github.com/tj/n/tags
-ARG N_VERSION=9.2.3
+ARG N_VERSION=10.1.0
 
 # see https://nodejs.org/en/about/previous-releases
-ARG NODE_VERSION=22.7.0
+ARG NODE_VERSION=22.11.0
 
 RUN export URL=https://raw.githubusercontent.com/tj/n/v${N_VERSION}/bin/n && \
     curl -L $URL | bash -s ${NODE_VERSION}
