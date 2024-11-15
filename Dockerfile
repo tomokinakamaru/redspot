@@ -25,7 +25,9 @@ FROM development AS build
 
 COPY / /src
 
-RUN cd /src && pdm build --no-sdist
+RUN cd /src && \
+    pdm sync --no-isolation && \
+    pdm build --no-sdist
 
 # -------------------------------------------------------------------------------------------------
 FROM python:${PYTHON_VERSION}-slim AS production

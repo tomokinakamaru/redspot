@@ -27,7 +27,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - run: pip install pdm
+      - run: sh pdm-install.sh && pdm config build_isolation false
 
       - run: pdm sync && sh kernel-install.sh
 
