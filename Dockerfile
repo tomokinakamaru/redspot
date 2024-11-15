@@ -16,6 +16,7 @@ RUN export URL=https://raw.githubusercontent.com/tj/n/v${N_VERSION}/bin/n && \
 COPY /pdm-deps.txt /pdm-install.sh /
 
 RUN sh /pdm-install.sh && \
+    pdm config build_isolation false && \
     pdm config check_update false && \
     rm /pdm-*
 
