@@ -263,6 +263,12 @@ jlpm run ts-node schema-json.ts
 
 ### Upgrade dependencies
 
+#### Upgrade pdm dependencies
+
+```sh
+sh pdm-upgrade.sh
+```
+
 #### Upgrade pdm-managed dependencies
 
 ```sh
