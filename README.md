@@ -263,10 +263,20 @@ jlpm run ts-node schema-json.ts
 
 ### Upgrade dependencies
 
+#### Upgrade Python and Node
+
+Check the URLs listed in Dockerfile
+
 #### Upgrade pdm dependencies
 
 ```sh
 sh pdm-upgrade.sh
+```
+
+#### Upgrade default kernel dependencies
+
+```sh
+sh kernel-upgrade.sh
 ```
 
 #### Upgrade pdm-managed dependencies
@@ -282,13 +292,3 @@ jlpm plugin import @yarnpkg/plugin-interactive-tools
 jlpm upgrade-interactive
 jlpm plugin remove @yarnpkg/plugin-interactive-tools
 ```
-
-#### Upgrade default kernel dependencies
-
-```sh
-sh kernel-upgrade.sh
-```
-
-#### Upgrade Docker image dependencies
-
-Check the URLs listed in Dockerfile
