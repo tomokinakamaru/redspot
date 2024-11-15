@@ -1,30 +1,33 @@
 # see https://www.python.org/doc/versions/
-ARG PYTHON_VERSION=3.12.5
+ARG PYTHON_VERSION=3.12.7
 
 # -------------------------------------------------------------------------------------------------
 FROM python:${PYTHON_VERSION} AS development
 
 # see https://github.com/tj/n/tags
-ARG N_VERSION=9.2.3
+ARG N_VERSION=10.1.0
 
 # see https://nodejs.org/en/about/previous-releases
-ARG NODE_VERSION=22.7.0
-
-# see https://github.com/pdm-project/pdm/releases
-ARG PDM_VERSION=2.18.1
+ARG NODE_VERSION=22.11.0
 
 RUN export URL=https://raw.githubusercontent.com/tj/n/v${N_VERSION}/bin/n && \
     curl -L $URL | bash -s ${NODE_VERSION}
 
-RUN pip install pdm==${PDM_VERSION} && \
-    pdm config check_update false
+COPY /pdm-deps.txt /pdm-install.sh /
+
+RUN sh /pdm-install.sh && \
+    pdm config build_isolation false && \
+    pdm config check_update false && \
+    rm /pdm-*
 
 # -------------------------------------------------------------------------------------------------
 FROM development AS build
 
 COPY / /src
 
-RUN cd /src && pdm build --no-sdist
+RUN cd /src && \
+    pdm sync --no-isolation && \
+    pdm build --no-sdist
 
 # -------------------------------------------------------------------------------------------------
 FROM python:${PYTHON_VERSION}-slim AS production
