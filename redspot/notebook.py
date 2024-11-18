@@ -10,11 +10,16 @@ class Notebook(dict):
         head = kind.split(".", 1)[0]
         self._invoke(head, kind, args)
 
+    def get_cell(self, id):
+        for c in self["cells"]:
+            if c["id"] == id:
+                return c
+
     def _INotebookModel(self, kind, args):
         self._invoke(kind, args)
 
     def _ISharedCell(self, kind, args):
-        cell = self._get_cell(args["cell"])
+        cell = self.get_cell(args["cell"])
         self._invoke(kind, cell, args)
 
     def _INotebookModel_changed_cellsChange(self, args):
@@ -46,11 +51,6 @@ class Notebook(dict):
         name = key.replace(".", "_").replace(":", "_")
         func = getattr(self, f"_{name}", None)
         func and func(*args)
-
-    def _get_cell(self, id):
-        for c in self["cells"]:
-            if c["id"] == id:
-                return c
 
 
 def _apply_delta(obj, args):

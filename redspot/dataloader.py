@@ -1,29 +1,21 @@
 from collections import defaultdict
 
-from redspot import database, datafilters
+from redspot import database
 from redspot.notebook import Notebook
 
 
 def load(path):
-    stream = _load(path)
-    stream = datafilters.filter_by_kind(stream)
-    stream = datafilters.filter_by_diff(stream)
-    stream = datafilters.filter_void(stream)
-    yield from stream
-
-
-def _load(path):
     panel_roots = _load_panel_roots(path)
-    for panel, kind, args, notebook in _load_notebooks(path):
+    for time, panel, kind, args, notebook in _load_notebooks(path):
         panel = panel_roots[panel]
-        yield panel, kind, args, notebook
+        yield time, panel, kind, args, notebook
 
 
 def _load_notebooks(path):
     notebooks = defaultdict(Notebook)
-    for _, panel, kind, args in database.get(path):
+    for time, panel, kind, args in database.get(path):
         notebooks[panel].apply(kind, args)
-        yield panel, kind, args, notebooks[panel]
+        yield time, panel, kind, args, notebooks[panel]
 
 
 def _load_panel_roots(path):

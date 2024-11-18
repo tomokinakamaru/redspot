@@ -13,7 +13,7 @@ database = "tests/x.db"
 
 def test_load_api():
     g = redspot.load(database)
-    assert len(list(g)) == 3
+    assert len(list(g)) == 16
 
 
 def test_load_cli():
