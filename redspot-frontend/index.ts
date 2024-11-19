@@ -48,6 +48,8 @@ export default {
             "INotebookModel.changed:metadataChange",
             jsonifyMetadataChange(change.metadataChange, notebook.metadata)
           );
+        } else if (change.stateChange) {
+          // ignored
         }
         // start monitoring cell changes
         change.cellsChange?.forEach((delta) =>
